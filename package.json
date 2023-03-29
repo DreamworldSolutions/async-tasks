@@ -1,0 +1,27 @@
+{
+  "name": "@dreamworld/async-tasks",
+  "version": "0.0.0-development",
+  "description": "It's used to manage async tasks on redux",
+  "main": "index.js",
+  "type": "module",
+  "repository": "git@github.com:DreamworldSolutions/async-tasks.git",
+  "author": "Dhruval Kodinariya <dhruval@hisab.co>",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "semantic-release": "17.0.8"
+  },
+  "release": {
+    "branches": [
+      "+([0-9])?(.{+([0-9]),x}).x",
+      "master",
+      {
+          "name": "feature/*",
+          "prerelease": "${name.replace(/^feature\\//g, \"\")}",
+          "channel": "${name.replace(/^feature\\//g, \"\")}"
+      }
+    ]
+  }
+}
