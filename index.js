@@ -2,6 +2,7 @@ import { call, put, cancelled, race, delay } from 'redux-saga/effects';
 import { ReduxUtils } from "@dreamworld/pwa-helpers/redux-utils.js";
 import reducer from "./reducer.js";
 import * as actions from "./actions.js";
+import { reduxPath } from './constants.js';
 export * as selectors from "./selectors.js";
 
 var _store;
@@ -11,7 +12,7 @@ var _store;
  */
 export const init = (store) => {
   store.addReducers({
-    "asyncTasks": reducer
+    [reduxPath]: reducer
   });
 
   _store = store;
@@ -67,7 +68,7 @@ export function* run(id, fn, timeoutMillis) {
  */
 export function taskResult(id) {
   return new Promise((resolve, reject) => {
-    let unsubscribe = ReduxUtils.subscribe(_store, `asyncTasks.${id}`, (task) => {
+    let unsubscribe = ReduxUtils.subscribe(_store, `${reduxPath}.${id}`, (task) => {
       if (task?.error) {
         unsubscribe();
         reject(task.error);

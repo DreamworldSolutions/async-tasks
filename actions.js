@@ -1,5 +1,5 @@
-export const STARTED = '___DW___ASYNC_TASK_STARTED';
-export const COMPLETED = '___DW___ASYNC_TASK_COMPLETED';
+export const STARTED = '___DW_ASYNC_TASK_STARTED';
+export const COMPLETED = '___DW_ASYNC_TASK_COMPLETED';
 
 export const started = (id) => {
   return {

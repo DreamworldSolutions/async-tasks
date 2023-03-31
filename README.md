@@ -56,7 +56,7 @@ try {
 
 It manages state at below path.
 
-Path: `asyncTasks.$taskId`
+Path: `___DW_asyncTasks.$taskId`
 
 | name          | data type  | description |
 |---------------|----------- |-------------|
