@@ -69,13 +69,13 @@ export function* run(id, fn, timeoutMillis) {
 export function taskResult(id) {
   return new Promise((resolve, reject) => {
     let unsubscribe = ReduxUtils.subscribe(_store, `${reduxPath}.${id}`, (task) => {
-      if (task?.error) {
+      if (task?.error && task?.status === 'FAILED') {
         unsubscribe();
         reject(task.error);
         return;
       }
 
-      if (task?.result) {
+      if (task?.result && task?.status === 'SUCCESS') {
         unsubscribe();
         resolve(task.result);
         return;
