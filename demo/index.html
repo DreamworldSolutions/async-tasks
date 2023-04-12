@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    window.process = window.process || {};
+    window.process.env = window.process.env || {};
+    // Redux assumes `process.env.NODE_ENV` exists in the ES module build.
+    // https://github.com/reactjs/redux/issues/2907
+    window.process.env.NODE_ENV = 'production';
+  </script>
+</head>
+<body>
+  <h3>Async Tasks</h3>
+  <demo-page></demo-page>
+  <script type="module" src="./demo-page.js"></script>
+</body>
+</html>
