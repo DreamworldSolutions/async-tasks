@@ -2,23 +2,21 @@ import * as actions from './actions';
 import { ReduxUtils } from "@dreamworld/pwa-helpers/redux-utils.js";
 
 export default (state = {}, action) => {
-  let oState = { ...state };
-
   switch (action.type) {
     case actions.STARTED:
-      oState = ReduxUtils.replace(oState, `${action.id}.status`, "IN_PROGRESS");
-      oState = ReduxUtils.replace(oState, `${action.id}.startedAt`, new Date().getTime());
-      return oState;
+      state = ReduxUtils.replace(state, `${action.id}.status`, "IN_PROGRESS");
+      state = ReduxUtils.replace(state, `${action.id}.startedAt`, new Date().getTime());
+      return state;
 
     case actions.COMPLETED:
-      let status = action?.result ? "SUCCESS" : "FAILED";
-      let result = action?.result ? action.result : undefined;
-      let error = action?.error ? action.error : undefined;
-      oState = ReduxUtils.replace(oState, `${action.id}.status`, status);
-      oState = ReduxUtils.replace(oState, `${action.id}.completedAt`, new Date().getTime());
-      oState = ReduxUtils.replace(oState, `${action.id}.result`, result);
-      oState = ReduxUtils.replace(oState, `${action.id}.error`, error);
-      return oState;
+      const status = action?.error ? "FAILED" : "SUCCESS";
+      const result = action?.result;
+      const error = action?.error ? action.error : undefined;
+      state = ReduxUtils.replace(state, `${action.id}.status`, status);
+      state = ReduxUtils.replace(state, `${action.id}.completedAt`, new Date().getTime());
+      state = ReduxUtils.replace(state, `${action.id}.result`, result);
+      state = ReduxUtils.replace(state, `${action.id}.error`, error);
+      return state;
 
     default:
       return state;
